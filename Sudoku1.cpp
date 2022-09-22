@@ -1,19 +1,19 @@
 // Sudoku1.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "SudokuUtilities.h"
 #include <iostream>
 
 using namespace std;
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {	
 	char sBlockString[BLOCK_SIZE+20] = {0};
 	
     // Use the libraries provided. Asks the user to specify a puzzle.
     // Use the global gSudokuPuzzle structure in the library to communicate what was provided.
-	while( ) //Continues normal flow if strings do not contain q or Q.
+	while(  ) //Continues normal flow if strings do not contain q or Q.
 	{
         // Check if the gSudokuPuzzle is or is not a solution.
 			if ( )

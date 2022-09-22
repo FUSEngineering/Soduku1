@@ -2,7 +2,8 @@
 //Steve Frezza
 //Sudoku Puzzle Analysis
 
-#include "stdafx.h"
+//#include "stdafx.h"
+#include "math.h"
 #include "SudokuUtilities.h"
 #include "Row.h"
 
@@ -126,19 +127,19 @@ bool bSOLVEDBlock(CellType sBlockString[])
 			if (bIsUsed[Five]) return false;
 			bIsUsed[Five] = true;
 			break;
-		case '6': 
+		case Six:
 			if (bIsUsed[Six]) return false;
 			bIsUsed[Six] = true;
 			break;
-		case '7': 
+		case Seven:
 			if (bIsUsed[Seven]) return false;
 			bIsUsed[Seven] = true;
 			break;
-		case '8': 
+		case Eight:
 			if (bIsUsed[Eight]) return false;
 			bIsUsed[Eight] = true;
 			break;
-		case '9': 
+		case Nine:
 			if (bIsUsed[Nine]) return false;
 			bIsUsed[Nine] = true;
 			break;
@@ -216,10 +217,36 @@ bool bGetBlockString(char sBlockString[])  //STUB
 	}
 	return false;
 }
-bool bInputGrid(Row *gGrid[BLOCK_SIZE])  
-{
 
+const CellType charToCellType (char c) {
+    switch (c)
+    {
+        case '_': return Blank; break;
+        case '1': return One;   break;
+        case '2': return Two;   break;
+        case '3': return Three; break;
+        case '4': return Four;  break;
+        case '5': return Five;  break;
+        case '6': return Six;   break;
+        case '7': return Seven; break;
+        case '8': return Eight; break;
+        case '9': return Nine;  break;
+        default:  return Blank; break;
+    }
+}
+void convertToCellType(char sBlockString[BLOCK_SIZE], CellType gBlock[BLOCK_SIZE])
+{
+    for (int iIndexNo=0; iIndexNo<BLOCK_SIZE; iIndexNo++)
+    {
+        gBlock[iIndexNo] = charToCellType(sBlockString[iIndexNo]);
+    }
+}
+
+bool bInputGrid()
+{
 	char sBlockString[BLOCK_SIZE][BLOCK_SIZE+20];
+    Row *gGrid[BLOCK_SIZE];
+    
 	for(int iBlockNo = 0; iBlockNo < BLOCK_SIZE; )
 	{
 		// Read in the block information sequentially; verify it; 
@@ -232,9 +259,9 @@ bool bInputGrid(Row *gGrid[BLOCK_SIZE])
 		}
 		else if(bValidBlock(sBlockString[iBlockNo]))
 		{
-			gGrid[iBlockNo] = new Row(sBlockString[iBlockNo]);
+			// gGrid[iBlockNo] = new Row(sBlockString[iBlockNo]);
 			
-			//convertToCellType(sBlockString[iBlockNo],gSudokuPuzzle[iBlockNo]);
+			convertToCellType(sBlockString[iBlockNo],gSudokuPuzzle[iBlockNo]);
 			iBlockNo++;
 		}
 		else // if(bValidBlock(sBlockString[iBlockNo])==false)
